@@ -1,35 +1,34 @@
-# rabbit3
-import random
-
-def display_rabbits():
-    print("\nHere are the rabbits:")
-    print("1: 🐰  2: 🐰  3: 🐰  4: 🐰\n")
-
-def play_game():
-    print("Welcome to the Rabbit Guessing Game!")
-    print("One of the rabbits has a gold cup behind it. Can you guess which one?")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabbit Guessing Game</title>
+</head>
+<body>
+    <h1>Guess the Rabbit Game!</h1>
+    <p>One of the rabbits has a gold cup behind it. Can you guess which one?</p>
     
-    rabbits = ['🐰', '🐰', '🐰', '🐰']
-    cup_position = random.randint(0, 3)  # Randomly place the cup behind one rabbit
+    <div id="rabbits">
+        <button onclick="guessRabbit(1)">🐰</button>
+        <button onclick="guessRabbit(2)">🐰</button>
+        <button onclick="guessRabbit(3)">🐰</button>
+        <button onclick="guessRabbit(4)">🐰</button>
+    </div>
 
-    # Display rabbits to the player
-    display_rabbits()
+    <p id="result"></p>
 
-    # Ask the player for a guess
-    guess = int(input("Choose a rabbit (1, 2, 3, or 4): ")) - 1
+    <script>
+        const cupPosition = Math.floor(Math.random() * 4) + 1;
 
-    # Check if the player guessed correctly
-    if guess == cup_position:
-        print("\nCongratulations! You found the gold cup! 🏆")
-    else:
-        print(f"\nSorry, no gold cup behind rabbit {guess + 1}. The cup was behind rabbit {cup_position + 1}.")
-    
-    # Ask if they want to play again
-    play_again = input("Do you want to play again? (yes/no): ").lower()
-    if play_again == 'yes':
-        play_game()
-    else:
-        print("Thanks for playing! Goodbye!")
+        function guessRabbit(rabbitNumber) {
+            if (rabbitNumber === cupPosition) {
+                document.getElementById("result").innerHTML = "Congratulations! You found the gold cup behind rabbit " + rabbitNumber + " 🏆";
+            } else {
+                document.getElementById("result").innerHTML = "Sorry, no gold cup behind rabbit " + rabbitNumber + ". Try again!";
+            }
+        }
+    </script>
+</body>
+</html>
 
-# Start the game
-play_game()
